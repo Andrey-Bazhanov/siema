@@ -79,7 +79,7 @@
     for (let i = 0; i < this.innerElements.length; i++) {
       this.innerElements[i].style.cssFloat = 'left';
       this.innerElements[i].style.float = 'left';
-      this.innerElements[i].style.width = `${100 / this.innerElements.length}%`;
+      this.innerElements[i].style.width = `${this.selectorWidth}px`;
       docFragment.appendChild(this.innerElements[i]);
     }
 
@@ -144,6 +144,9 @@
   Siema.prototype.resize = function resize() {
     this.selectorWidth = this.selector.getBoundingClientRect().width;
     this.sliderFrame.style.width = `${(this.selectorWidth / this.config.perPage) * this.innerElements.length}px`;
+    for (let i = 0; i < this.innerElements.length; i++) {
+      this.innerElements[i].style.width = `${this.selectorWidth}px`;
+    }
   };
 
   // Clear drag
